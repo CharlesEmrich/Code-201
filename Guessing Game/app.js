@@ -76,25 +76,26 @@ while(keepAsking) {
 //Fourth question
 
 keepAsking = true;
+var Tries = 0;
 
-while(keepAsking) {
+while(keepAsking && Tries <= 4 ) {
   var userResponse = prompt('How old am I?');
   console.log('userResponse = ' + userResponse);
 
-  if (userResponse != 29) {
+  if (userResponse !== 29) {
+    Tries ++;
     alert('Uh, maybe try that one again?');
-    keepAsking = false;
     if (userResponse > 29) {
       alert('That seems a little high!');
     } else {
       alert('That sees a litle low!');
     }
-  } else if (userResponse = 29) {
+  } else if (userResponse === 29) {
     alert('Great work! That one took math!');
     keepAsking = false;
     Score ++;
     console.log('Score is currently ' + Score);
-  } else {
+  } else if (userResponse.isNaN()) {
     alert('Oh shucks, that\'s not a valid form of answer. Could you use numerals?');
   }
 }
@@ -116,7 +117,7 @@ while(keepAsking) {
       keepAsking = false;
     }
   }
-  if (answeredCorrectly = true) {
+  if (answeredCorrectly) {
     alert('Great work! You read the words on the page!');
     keepAsking = false;
     Score ++;
