@@ -83,7 +83,10 @@ while(keepAsking && Tries < 4 ) {
   var userResponse = prompt('How old am I?');
   console.log('userResponse = ' + userResponse);
 
-  if (userResponse != 29) {
+  if (isNaN(userResponse)) {
+    alert('Oh shucks, that\'s not a valid form of answer. Could you use numerals?');
+    Tries++;
+  } else if (userResponse != 29) {
     Tries ++;
     console.log('Tries is currently ' + Tries);
     alert('Uh, maybe try that one again?');
@@ -97,9 +100,6 @@ while(keepAsking && Tries < 4 ) {
     keepAsking = false;
     Score ++;
     console.log('Score is currently ' + Score);
-  } else {
-    // I could probably implement isNaN here but when I tried I broke it.
-    alert('Oh shucks, that\'s not a valid form of answer. Could you use numerals?');
   }
 }
 
