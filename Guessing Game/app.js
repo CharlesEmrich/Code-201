@@ -1,3 +1,4 @@
+console.log('Hello, world!');
 var userName = prompt('What\'s your name?');
 console.log('userName = ' + userName);
 
@@ -78,24 +79,26 @@ while(keepAsking) {
 keepAsking = true;
 var Tries = 0;
 
-while(keepAsking && Tries <= 4 ) {
+while(keepAsking && Tries < 4 ) {
   var userResponse = prompt('How old am I?');
   console.log('userResponse = ' + userResponse);
 
-  if (userResponse !== 29) {
+  if (userResponse != 29) {
     Tries ++;
+    console.log('Tries is currently ' + Tries);
     alert('Uh, maybe try that one again?');
     if (userResponse > 29) {
       alert('That seems a little high!');
-    } else {
-      alert('That sees a litle low!');
+    } else if (userResponse < 29){
+      alert('That seems a litle low!');
     }
-  } else if (userResponse === 29) {
+  } else if (userResponse == 29) {
     alert('Great work! That one took math!');
     keepAsking = false;
     Score ++;
     console.log('Score is currently ' + Score);
-  } else if (userResponse.isNaN()) {
+  } else {
+    // I could probably implement isNaN here but when I tried I broke it.
     alert('Oh shucks, that\'s not a valid form of answer. Could you use numerals?');
   }
 }
@@ -107,6 +110,7 @@ answeredCorrectly = false;
 
 while(keepAsking) {
   var userResponse = prompt('I mentioned two kinds of words I was good at. What\'s one of them?');
+  userResponse = userResponse.toLowerCase();
   console.log('userResponse = ' + userResponse);
 
   var validResponses = ['pun','speech','puns','speeches'];
@@ -140,8 +144,9 @@ while(keepAsking) {
   console.log('User input split into ' + splitResponse);
 
   for (var i = 0; i < splitResponse.length; i++) {
-    if (sixAnswers.indexOf(splitResponse[i]) != -1) {
+    if (sixthAnswers.indexOf(splitResponse[i]) != -1) {
       correctAnswers++;
+      console.log(i + ':correctAnswers is currently ' + correctAnswers);
     }
   }
 
@@ -162,4 +167,4 @@ while(keepAsking) {
 
 //Scoring
 
-alert('Congratulations, ' + userName + '! You got ' + Score + ' out of 5 questions correct!');
+alert('Congratulations, ' + userName + '! You got ' + Score + ' out of 6 questions correct!');
