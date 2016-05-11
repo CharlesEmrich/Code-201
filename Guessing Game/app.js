@@ -102,7 +102,7 @@ while(keepAsking && Tries <= 4 ) {
 
 //Fifth question
 
-var keepAsking = true;
+keepAsking = true;
 answeredCorrectly = false;
 
 while(keepAsking) {
@@ -124,6 +124,39 @@ while(keepAsking) {
     console.log('Score is currently ' + Score);
   } else {
     alert('Uh, maybe next time.');
+  }
+}
+
+//Sixth question
+keepAsking = true;
+var sixthAnswers = ['lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit', 'phasellus', 'ac'];
+var correctAnswers = 0;
+
+while(keepAsking) {
+  var userResponse = prompt('What are two of my favorite lorem ipsum words?');
+  console.log('userResponse = ' + userResponse);
+  userResponse = userResponse.toLowerCase();
+  splitResponse = userResponse.split(' ');
+  console.log('User input split into ' + splitResponse);
+
+  for (var i = 0; i < splitResponse.length; i++) {
+    if (sixAnswers.indexOf(splitResponse[i]) != -1) {
+      correctAnswers++;
+    }
+  }
+
+  if (correctAnswers == 2) {
+    keepAsking = false;
+    alert('Great work! You read the words on the page!');
+    Score ++;
+    console.log('Score is currently ' + Score);
+  } else if (correctAnswers > 2) {
+    alert('Looks like you got a little over-enthusiastic! I only asked for two. I\'ll give you the point anyway.');
+    Score ++;
+    console.log('Score is currently ' + Score);
+  } else {
+    alert('Uh, maybe next time?');
+    keepAsking = false;
   }
 }
 
