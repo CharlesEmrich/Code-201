@@ -25,13 +25,13 @@ var questionFiveEl = document.getElementById('question-five');
 var questionFiveResponseEL = document.getElementById('question-five-response');
 var questionSixEl = document.getElementById('question-six');
 var questionSixResponseEL = document.getElementById('question-six-response');
-var finalScoreEl = document.getElementById('finalScore')
+var finalScoreEl = document.getElementById('finalScore');
 
 //Function declarations
 function scoreIncrement(answer) {
   if (answer === true){
     Score++;
-    console.log('Score is now ' + Score)
+    console.log('Score is now ' + Score);
   }
 }
 
@@ -42,6 +42,8 @@ function splitString(string) {
 };
 
 //Central Logic
+var userName = prompt('What\'s your name, then?');
+
 for (var i = 0; i < Quiz.length; i++) {
   var userResponse = prompt(Quiz[i][0]);
   answeredCorrectly = false; //Unnecessary?
@@ -53,10 +55,10 @@ for (var i = 0; i < Quiz.length; i++) {
     var answeredCorrectly = (function() {
       if ((userResponse.toLowerCase() === 'n' || userResponse.toLowerCase() === 'no' || userResponse.toLowerCase() === 'false') && i == 1) {
         answeredCorrectly = true;
-        questionTwoResponseEL.textContent = 'Correct! You got it!';
+        questionTwoResponseEL.textContent = 'Correct!' + userName + '! You got it!';
         console.log('Question ' + i + ' answered correctly'); } else if ((userResponse.toLowerCase() === 'y' || userResponse.toLowerCase() === 'yes' || userResponse.toLowerCase() === 'true') && i == 0) {
           answeredCorrectly = true;
-          questionOneResponseEL.textContent = 'Correct! You got it!';
+          questionOneResponseEL.textContent = 'Correct!' + userName + '! You got it!';
           console.log('Question ' + i + ' answered correctly');
         } else if (i === 0) {
           questionOneResponseEL.textContent = 'Incorrect! Sorry!';
@@ -73,7 +75,7 @@ for (var i = 0; i < Quiz.length; i++) {
           //console.log('b: ' + Quiz[2][1])
       if (splitResponse[j].toLowerCase() == Quiz[2][1]) {
         answeredCorrectly = true;
-        questionThreeResponseEL.textContent = 'Correct! You got it!';
+        questionThreeResponseEL.textContent = 'Correct!' + userName + '! You got it!';
         console.log('Question ' + i + ' answered correctly');
       } else {
         questionThree1ResponseEL.textContent = 'Incorrect! Sorry!';      }
@@ -96,7 +98,7 @@ for (var i = 0; i < Quiz.length; i++) {
         }
       } else if (userResponse == Quiz[3][1]) {
         answeredCorrectly = true;
-        questionFourResponseEL.textContent = 'Correct! You got it!';
+        questionFourResponseEL.textContent = 'Correct!' + userName + '! You got it!';
         console.log('Question ' + i + ' answered correctly');
       }
       break;
@@ -106,7 +108,7 @@ for (var i = 0; i < Quiz.length; i++) {
     for (var k = 0; k < Quiz[4][1].length; k++) {
       if (Quiz[4][1][k] == userResponse) {
         answeredCorrectly = true;
-        questionFiveResponseEL.textContent = 'Correct! You got it!'
+        questionFiveResponseEL.textContent = 'Correct!' + userName + '! You got it!'
         console.log('Question ' + i + ' answered correctly');
       } else {
         questionFiveResponseEL.textContent = 'Incorrect! Sorry!';
@@ -124,7 +126,7 @@ for (var i = 0; i < Quiz.length; i++) {
     }
     if (sixthAnswers === 2) {
       answeredCorrectly = true;
-      questionSixResponseEL.textContent = 'Correct! You got it!'
+      questionSixResponseEL.textContent = 'Correct!' + userName + '! You got it!'
       console.log('Question ' + i + ' answered correctly');
     } else if (sixthAnswers === 1) {
       questionSixResponseEL.textContent = 'Half correct!';
@@ -134,7 +136,7 @@ for (var i = 0; i < Quiz.length; i++) {
     break;
   }
 
-function scoreIncrement(answeredCorrectly)
+  scoreIncrement(answeredCorrectly);
 }
 
 //Final Score
