@@ -55,10 +55,10 @@ for (var i = 0; i < Quiz.length; i++) {
     var answeredCorrectly = (function() {
       if ((userResponse.toLowerCase() === 'n' || userResponse.toLowerCase() === 'no' || userResponse.toLowerCase() === 'false') && i == 1) {
         answeredCorrectly = true;
-        questionTwoResponseEL.textContent = 'Correct!' + userName + '! You got it!';
+        questionTwoResponseEL.textContent = 'Correct, ' + userName + '! You got it!';
         console.log('Question ' + i + ' answered correctly'); } else if ((userResponse.toLowerCase() === 'y' || userResponse.toLowerCase() === 'yes' || userResponse.toLowerCase() === 'true') && i == 0) {
           answeredCorrectly = true;
-          questionOneResponseEL.textContent = 'Correct!' + userName + '! You got it!';
+          questionOneResponseEL.textContent = 'Correct, ' + userName + '! You got it!';
           console.log('Question ' + i + ' answered correctly');
         } else if (i === 0) {
           questionOneResponseEL.textContent = 'Incorrect! Sorry!';
@@ -75,10 +75,11 @@ for (var i = 0; i < Quiz.length; i++) {
           //console.log('b: ' + Quiz[2][1])
       if (splitResponse[j].toLowerCase() == Quiz[2][1]) {
         answeredCorrectly = true;
-        questionThreeResponseEL.textContent = 'Correct!' + userName + '! You got it!';
+        questionThreeResponseEL.textContent = 'Correct, ' + userName + '! You got it!';
         console.log('Question ' + i + ' answered correctly');
       } else {
-        questionThree1ResponseEL.textContent = 'Incorrect! Sorry!';      }
+        questionThree1ResponseEL.textContent = 'Incorrect! Sorry!';
+      }
     }
     break;
 
@@ -98,7 +99,7 @@ for (var i = 0; i < Quiz.length; i++) {
         }
       } else if (userResponse == Quiz[3][1]) {
         answeredCorrectly = true;
-        questionFourResponseEL.textContent = 'Correct!' + userName + '! You got it!';
+        questionFourResponseEL.textContent = 'Correct, ' + userName + '! You got it!';
         console.log('Question ' + i + ' answered correctly');
       }
       break;
@@ -108,7 +109,7 @@ for (var i = 0; i < Quiz.length; i++) {
     for (var k = 0; k < Quiz[4][1].length; k++) {
       if (Quiz[4][1][k] == userResponse) {
         answeredCorrectly = true;
-        questionFiveResponseEL.textContent = 'Correct!' + userName + '! You got it!'
+        questionFiveResponseEL.textContent = 'Correct, ' + userName + '! You got it!';
         console.log('Question ' + i + ' answered correctly');
       } else {
         questionFiveResponseEL.textContent = 'Incorrect! Sorry!';
@@ -126,7 +127,7 @@ for (var i = 0; i < Quiz.length; i++) {
     }
     if (sixthAnswers === 2) {
       answeredCorrectly = true;
-      questionSixResponseEL.textContent = 'Correct!' + userName + '! You got it!'
+      questionSixResponseEL.textContent = 'Correct, ' + userName + '! You got it!';
       console.log('Question ' + i + ' answered correctly');
     } else if (sixthAnswers === 1) {
       questionSixResponseEL.textContent = 'Half correct!';
