@@ -1,14 +1,19 @@
 //Global Variables
-var deliveriesMade = [
+var pizzasMade = [
   getRandomInt(0,4),
+  getRandomInt(0,7),
+  getRandomInt(2,15),
+  getRandomInt(15,35),
+  getRandomInt(12,31),
+  getRandomInt(5,20),
+];
+var deliveriesMade = [
+  getRandomInt(0,pizzasMade[0] || 4), //I'm not sure about this.
   getRandomInt(0.4),
   getRandomInt(1,4),
   getRandomInt(3,8),
   getRandomInt(5,12),
   getRandomInt(5,11),
-];
-var pizzasMade = [
-  
 ];
 //Global Logic
 function getRandomInt(min, max) {
@@ -20,6 +25,7 @@ function Store (location) {
   this.pizzas = pizzasMade;
   this.deliveries = deliveriesMade;
 };
+function driversReqd(de)
 
 //Constructing Stores
 var Hillsboro = new Store(Hillsboro);
