@@ -25,13 +25,13 @@ var questionFiveEl = document.getElementById('question-five');
 var questionFiveResponseEL = document.getElementById('question-five-response');
 var questionSixEl = document.getElementById('question-six');
 var questionSixResponseEL = document.getElementById('question-six-response');
-var finalScoreEl = document.getElementById('finalScore')
+var finalScoreEl = document.getElementById('finalScore');
 
 //Function declarations
 function scoreIncrement(answer) {
   if (answer === true){
     Score++;
-    console.log('Score is now ' + Score)
+    console.log('Score is now ' + Score);
   }
 }
 
@@ -42,6 +42,8 @@ function splitString(string) {
 };
 
 //Central Logic
+var userName = prompt('What\'s your name, then?');
+
 for (var i = 0; i < Quiz.length; i++) {
   var userResponse = prompt(Quiz[i][0]);
   answeredCorrectly = false; //Unnecessary?
@@ -76,7 +78,8 @@ for (var i = 0; i < Quiz.length; i++) {
         questionThreeResponseEL.textContent = 'Correct, ' + userName + '! You got it!';
         console.log('Question ' + i + ' answered correctly');
       } else {
-        questionThree1ResponseEL.textContent = 'Incorrect! Sorry!';      }
+        questionThree1ResponseEL.textContent = 'Incorrect! Sorry!';
+      }
     }
     break;
 
@@ -106,7 +109,7 @@ for (var i = 0; i < Quiz.length; i++) {
     for (var k = 0; k < Quiz[4][1].length; k++) {
       if (Quiz[4][1][k] == userResponse) {
         answeredCorrectly = true;
-        questionFiveResponseEL.textContent = 'Correct, ' + userName + '! You got it!'
+        questionFiveResponseEL.textContent = 'Correct, ' + userName + '! You got it!';
         console.log('Question ' + i + ' answered correctly');
       } else {
         questionFiveResponseEL.textContent = 'Incorrect! Sorry!';
@@ -124,7 +127,7 @@ for (var i = 0; i < Quiz.length; i++) {
     }
     if (sixthAnswers === 2) {
       answeredCorrectly = true;
-      questionSixResponseEL.textContent = 'Correct, ' + userName + '! You got it!'
+      questionSixResponseEL.textContent = 'Correct, ' + userName + '! You got it!';
       console.log('Question ' + i + ' answered correctly');
     } else if (sixthAnswers === 1) {
       questionSixResponseEL.textContent = 'Half correct!';
@@ -134,7 +137,7 @@ for (var i = 0; i < Quiz.length; i++) {
     break;
   }
 
-function scoreIncrement(answeredCorrectly)
+  scoreIncrement(answeredCorrectly);
 }
 
 //Final Score
