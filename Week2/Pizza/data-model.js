@@ -1,15 +1,20 @@
 //Global Variables
-var deliveryMax = [4,4,4,8,12,11];
-var deliveryMin = [0,0,1,3,5,6];
-var timeBounds = [800,1100,1400,1700,2300,2600];
+var shifts = ['8a-11a','11a-2p','2p-5p','5p-8p','8p-11p','11p-2a'];
 
 //Global Logic
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 function driverCheck(a) {
-  Math.ceil(a / 3);
-}
+  return Math.ceil(a / 3);
+};
+function sumPizzas(a) {
+  var sum = 0;
+  for (var i = 0; i < a.length; i++) {
+    sum += a[i];
+  }
+  return sum;
+};
 
 //Store Constructor
 function Store (loc,pizzasByShift,deliveriesByShift) {
@@ -76,34 +81,37 @@ function Store (loc,pizzasByShift,deliveriesByShift) {
   }
 
   //Build an Array of drivers by hour
-  this.drivers = deliveries.map(driverCheck);
+  this.drivers = this.deliveries.map(driverCheck);
 
   //Build byShift arrays of all three of the above
   this.pizzasShiftly = [];
-  for (var i = 0; i < pizzas.length; i + 3) { //Can I use i + 3 here? Could I codify this operation as a function simply?
+  for (var i = 0; i < this.pizzas.length; i + 3) { //Can I use i + 3 here? Could I codify this operation as a function simply?
     this.pizzasShiftly.push(pizzas[i] + pizzas[i + 1] + pizzas[i + 2]);
   }
 
   this.deliveriesShiftly = [];
-  for (var i = 0; i < deliveries.length; i + 3) {
+  for (var i = 0; i < this.deliveries.length; i + 3) {
     this.pizzasShiftly.push(deliveries[i] + deliveries[i + 1] + deliveries[i + 2]);
   }
 
   this.driversShiftly = [];
-  for (var i = 0; i < drivers.length; i + 3) {
+  for (var i = 0; i < this.drivers.length; i + 3) {
     this.pizzasShiftly.push(drivers[i] + drivers[i + 1] + drivers[i + 2]);
   }
 
   //Make a table out of by-Shift data
   this.generateTable = function () {
-    var startItem = document.getElementById('salesTable' + loc); //Find the right table
-    for (var j = 2; i < 7; j++) { //prep to iterate over 6 rows.
-      var currentRow = startItem.$(':nthChild(j)'); //the working row is the j'th child of the table
-      currentRow.$(':nthChild(2)').textContent(this.pizzas[i - 2]); //Put pizza count in
-      currentRow.$(':nthChild(3)').textContent(this.deliveries[i - 2]);
-      currentRow.$(':nthChild(4)').textContent(this.drivers[i - 2]);
-    };
-  };
+
+  }
+  // this.generateTable = function () {
+  //   var startItem = document.getElementById('salesTable' + loc); //Find the right table
+  //   for (var j = 2; i < 7; j++) { //prep to iterate over 6 rows.
+  //     var currentRow = startItem.$(':nthChild(j)'); //the working row is the j'th child of the table
+  //     currentRow.$(':nthChild(2)').textContent(this.pizzas[i - 2]); //Put pizza count in
+  //     currentRow.$(':nthChild(3)').textContent(this.deliveries[i - 2]);
+  //     currentRow.$(':nthChild(4)').textContent(this.drivers[i - 2]);
+  //   };
+  // };
 };
 
 //Constructing Stores
@@ -145,13 +153,6 @@ var Clackamas = new Store(
 Clackamas.generateTable();
 
 //Calculate Odysseys
-function sumPizzas(a) {
-  var sum = 0;
-  for (var i = 0; i < a.length; i++) {
-    sum += a[i];
-  }
-  return sum;
-}
 
 var Odysseys = 7 * (sumPizzas(Hillsboro.pizzas) +
 sumPizzas(Pearl.pizzas) +
