@@ -1,0 +1,30 @@
+/*@@font-face {
+  font-family: 'Montserrat';
+  src: url('https://fonts.googleapis.com/css?family=Montserrat');
+}*/
+
+body {
+  background-color: #007F7F;
+  color: #00FFFF;
+  font-family: 'Arial', sans-serif;
+}
+
+h1,h2,h3 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+div {
+    background-color: #267F7F;
+    float:right;
+    border-radius: 100%;
+    text-align: center;
+    height: 300px;
+    width: 300px;
+}
+
+img {
+  border-radius: 100%;
+  float: left;
+  height: 500px;
+  width: 500px;
+}
