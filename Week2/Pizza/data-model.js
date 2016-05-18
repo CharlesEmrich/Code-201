@@ -85,77 +85,68 @@ function Store (loc,pizzasByShift,deliveriesByShift) {
   this.drivers = this.deliveries.map(driverCheck);
   console.log('this.drivers is' + this.drivers);
 
-  // //Build byShift arrays of all three of the above
-  // this.pizzasShiftly = [];
-  // for (var i = 0; i < this.pizzas.length; i += 3) { //Can I use i + 3 here? Could I codify this operation as a function simply?
-  //   this.pizzasShiftly.push(this.pizzas[i] + this.pizzas[i + 1] + this.pizzas[i + 2]);
-  // }
-  // console.log('pizzasShiftly is ' + this.pizzasShiftly);
-  //
-  // this.deliveriesShiftly = [];
-  // for (var i = 0; i < this.deliveries.length; i + 3) {
-  //   this.deliveriesShiftly.push(this.deliveries[i] + this.deliveries[i + 1] + this.deliveries[i + 2]);
-  // }
-  // console.log('deliveriesShiftly is ' + this.deliveriesShiftly);
-  //
-  // this.driversShiftly = [];
-  // for (var i = 0; i < this.drivers.length; i + 3) {
-  //   this.driversShiftly.push(this.drivers[i] + this.drivers[i + 1] + this.drivers[i + 2]);
-  // }
-  // console.log('driversShiftly is ' + this.driversShiftly);
-};
+  //Build byShift arrays of all three of the above
+  this.pizzasShiftly = [];
+  for (var i = 0; i < this.pizzas.length; i += 3) { //Can I use i + 3 here? Could I codify this operation as a function simply?
+    this.pizzasShiftly.push(this.pizzas[i] + this.pizzas[i + 1] + this.pizzas[i + 2]);
+  }
+  console.log('pizzasShiftly is ' + this.pizzasShiftly);
+
+  this.deliveriesShiftly = [];
+  for (var i = 0; i < this.deliveries.length; i += 3) {
+    this.deliveriesShiftly.push(this.deliveries[i] + this.deliveries[i + 1] + this.deliveries[i + 2]);
+  }
+  console.log('deliveriesShiftly is ' + this.deliveriesShiftly);
+
+  this.driversShiftly = [];
+  for (var i = 0; i < this.drivers.length; i += 3) {
+    this.driversShiftly.push(this.drivers[i] + this.drivers[i + 1] + this.drivers[i + 2]);
+  }
+  console.log('driversShiftly is ' + this.driversShiftly);
 
   //Make a table out of by-Shift data
-  // this.generateTable = function () {
-  //   //Reference for the body section
-  //   var body = document.getElementsByTagName('body');
-  //   // create a table element and a tbody element
-  //   var tbl = document.createElement('table');
-  //   var tblBody = document.createElement('tbody');
-  //   var cellText;
-  //
-  //   for (var i = 0; i < 6; i++) {
-  //     //create a table row
-  //     var row = document.createElement('tr');
-  //     for (var j = 0; j < 4; j++) {
-  //       //creates td element and a next node, make text node the contents of the td.
-  //       var cell = document.createElement('td');
-  //       switch (j) {
-  //       case 0:
-  //         cellText = document.createTextNode(shifts[i]);
-  //         break;
-  //       case 1:
-  //         cellText = document.createTextNode(pizzasShiftly[i]);
-  //         break;
-  //       case 2:
-  //         cellText = document.createTextNode(deliveriesShiftly[i]);
-  //         break;
-  //       case 3:
-  //         cellText = document.createTextNode(driversShiftly[i]);
-  //         break;
-  //       }
-  //       cell.appendChild(cellText);
-  //       row.appendChild(cell);
-  //     }
-  //     //add the row to the end of the table body
-  //     tblBody.appendChild(row);
-  //   }
-  // // put the <tbody> in the <table>
-  //   tbl.appendChild(tblBody);
-  // // appends <table> into <body>
-  //   body.appendChild(tbl);
-  // // sets the border attribute of tbl to 2;
-  //   tbl.setAttribute('border', '2');
+  this.generateTable = function () {
+    //Reference for the body section
+    var body = document.getElementById('tablezone');
+    // create a table element and a tbody element
+    var tbl = document.createElement('table');
+    var tblBody = document.createElement('tbody');
+    var cellText;
 
-  // this.generateTable = function () {
-  //   var startItem = document.getElementById('salesTable' + loc); //Find the right table
-  //   for (var j = 2; i < 7; j++) { //prep to iterate over 6 rows.
-  //     var currentRow = startItem.$(':nthChild(j)'); //the working row is the j'th child of the table
-  //     currentRow.$(':nthChild(2)').textContent(this.pizzas[i - 2]); //Put pizza count in
-  //     currentRow.$(':nthChild(3)').textContent(this.deliveries[i - 2]);
-  //     currentRow.$(':nthChild(4)').textContent(this.drivers[i - 2]);
-  //   };
-// }
+    for (var i = 0; i < 6; i++) {
+      //create a table row
+      var row = document.createElement('tr');
+      for (var j = 0; j < 4; j++) {
+        //creates td element and a next node, make text node the contents of the td.
+        var cell = document.createElement('td');
+        switch (j) {
+        case 0:
+          cellText = document.createTextNode(shifts[i]);
+          break;
+        case 1:
+          cellText = document.createTextNode(this.pizzasShiftly[i]);
+          break;
+        case 2:
+          cellText = document.createTextNode(this.deliveriesShiftly[i]);
+          break;
+        case 3:
+          cellText = document.createTextNode(this.driversShiftly[i]);
+          break;
+        }
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+      }
+      //add the row to the end of the table body
+      tblBody.appendChild(row);
+    }
+  // put the <tbody> in the <table>
+    tbl.appendChild(tblBody);
+  // appends <table> into <body>
+    body.appendChild(tbl);
+  // sets the border attribute of tbl to 2;
+    tbl.setAttribute('border', '2');
+  };
+}
 
 //Constructing Stores
 var Hillsboro = new Store(
@@ -163,7 +154,7 @@ var Hillsboro = new Store(
   [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
   [[0,4],[0,4],[1,4],[3,8],[5,12],[5,11]]
 );
-// Hillsboro.generateTable();
+Hillsboro.generateTable();
 // var Pearl = new Store(
 //   'Pearl',
 //   [[1,7],[5,9],[2,13],[18,32],[5,12],[8,20]],
