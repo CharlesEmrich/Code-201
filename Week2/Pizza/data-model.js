@@ -40,69 +40,70 @@ function Store (loc,pizzasByShift,deliveriesByShift) {
   console.log('this.pizzas is ' + this.pizzas);
   //Build Array of deliveries by hour
   this.deliveries = [];
-  //console.log('this.deliveries is ' + this.deliveries);
+  console.log('this.deliveries is ' + this.deliveries);
   for (var i = 0; i < this.pizzas.length; i++) { //Is this better accomplished by using  a sufficiently complex array.map?
-      if (i < 3) {
-        if (this.pizzas[i] > deliveriesByShift[0][1]) {
-          this.deliveries.push(getRandomInt(deliveriesByShift[0][0],this.pizzas[i]));
-        } else {
-          this.deliveries.push(getRandomInt(deliveriesByShift[0][0],deliveriesByShift[0][1]));
-        };
-      } else if (i < 6) {
-        if (this.pizzas[i] > deliveriesByShift[1][1]) {
-          this.deliveries.push(getRandomInt(deliveriesByShift[1][0],this.pizzas[i]));
-        } else {
-          this.deliveries.push(getRandomInt(deliveriesByShift[1][0],deliveriesByShift[1][1]));
-        };
-      } else if (i < 9) {
-        if (this.pizzas[i] > deliveriesByShift[2][1]) {
-          this.deliveries.push(getRandomInt(deliveriesByShift[2][0],this.pizzas[i]));
-        } else {
-          this.deliveries.push(getRandomInt(deliveriesByShift[2][0],deliveriesByShift[2][1]));
-        };
-      } else if (i < 12) {
-        if (this.pizzas[i] > deliveriesByShift[3][1]) {
-          this.deliveries.push(getRandomInt(deliveriesByShift[3][0],this.pizzas[i]));
-        } else {
-          this.deliveries.push(getRandomInt(deliveriesByShift[3][0],deliveriesByShift[3][1]));
-        };
-      } else if (i <15) {
-        if (this.pizzas[i] > deliveriesByShift[4][1]) {
-          this.deliveries.push(getRandomInt(deliveriesByShift[4][0],this.pizzas[i]));
-        } else {
-          this.deliveries.push(getRandomInt(deliveriesByShift[4][0],deliveriesByShift[4][1]));
-        };
-      } else if (i < 18) {
-        if (this.pizzas[i] > deliveriesByShift[5][1]) {
-          this.deliveries.push(getRandomInt(deliveriesByShift[5][0],this.pizzas[i]));
-        } else {
-          this.deliveries.push(getRandomInt(deliveriesByShift[5][0],deliveriesByShift[5][1]));
-    };
+    if (i < 3) {
+      if (this.pizzas[i] > deliveriesByShift[0][1]) {
+        this.deliveries.push(getRandomInt(deliveriesByShift[0][0],this.pizzas[i]));
+      } else {
+        this.deliveries.push(getRandomInt(deliveriesByShift[0][0],deliveriesByShift[0][1]));
+      };
+    } else if (i < 6) {
+      if (this.pizzas[i] > deliveriesByShift[1][1]) {
+        this.deliveries.push(getRandomInt(deliveriesByShift[1][0],this.pizzas[i]));
+      } else {
+        this.deliveries.push(getRandomInt(deliveriesByShift[1][0],deliveriesByShift[1][1]));
+      };
+    } else if (i < 9) {
+      if (this.pizzas[i] > deliveriesByShift[2][1]) {
+        this.deliveries.push(getRandomInt(deliveriesByShift[2][0],this.pizzas[i]));
+      } else {
+        this.deliveries.push(getRandomInt(deliveriesByShift[2][0],deliveriesByShift[2][1]));
+      };
+    } else if (i < 12) {
+      if (this.pizzas[i] > deliveriesByShift[3][1]) {
+        this.deliveries.push(getRandomInt(deliveriesByShift[3][0],this.pizzas[i]));
+      } else {
+        this.deliveries.push(getRandomInt(deliveriesByShift[3][0],deliveriesByShift[3][1]));
+      };
+    } else if (i < 15) {
+      if (this.pizzas[i] > deliveriesByShift[4][1]) {
+        this.deliveries.push(getRandomInt(deliveriesByShift[4][0],this.pizzas[i]));
+      } else {
+        this.deliveries.push(getRandomInt(deliveriesByShift[4][0],deliveriesByShift[4][1]));
+      };
+    } else if (i < 18) {
+      if (this.pizzas[i] > deliveriesByShift[5][1]) {
+        this.deliveries.push(getRandomInt(deliveriesByShift[5][0],this.pizzas[i]));
+      } else {
+        this.deliveries.push(getRandomInt(deliveriesByShift[5][0],deliveriesByShift[5][1]));
+      };
+    }
   }
-}
-console.log('this.deliveries is ' + this.deliveries);
+  console.log('this.deliveries is ' + this.deliveries);
+  // Build an Array of drivers by hour
+  this.drivers = this.deliveries.map(driverCheck);
+  console.log('this.drivers is' + this.drivers);
 
-  //Build an Array of drivers by hour
-  // this.drivers = this.deliveries.map(driverCheck);
-  //
   // //Build byShift arrays of all three of the above
   // this.pizzasShiftly = [];
-  // for (var i = 0; i < this.pizzas.length; i + 3) { //Can I use i + 3 here? Could I codify this operation as a function simply?
-  //   this.pizzasShiftly.push(pizzas[i] + pizzas[i + 1] + pizzas[i + 2]);
-  //   console.log('pizzasShiftly is ' + pizzasShiftly);
+  // for (var i = 0; i < this.pizzas.length; i += 3) { //Can I use i + 3 here? Could I codify this operation as a function simply?
+  //   this.pizzasShiftly.push(this.pizzas[i] + this.pizzas[i + 1] + this.pizzas[i + 2]);
   // }
+  // console.log('pizzasShiftly is ' + this.pizzasShiftly);
   //
   // this.deliveriesShiftly = [];
   // for (var i = 0; i < this.deliveries.length; i + 3) {
-  //   this.pizzasShiftly.push(deliveries[i] + deliveries[i + 1] + deliveries[i + 2]);
-  //   console.log('deliveriesShiftly is ' + deliveriesShiftly);
+  //   this.deliveriesShiftly.push(this.deliveries[i] + this.deliveries[i + 1] + this.deliveries[i + 2]);
   // }
+  // console.log('deliveriesShiftly is ' + this.deliveriesShiftly);
   //
   // this.driversShiftly = [];
   // for (var i = 0; i < this.drivers.length; i + 3) {
-  //   this.pizzasShiftly.push(drivers[i] + drivers[i + 1] + drivers[i + 2]);
-  //   console.log('driversShiftly is ' + driversShiftly);
+  //   this.driversShiftly.push(this.drivers[i] + this.drivers[i + 1] + this.drivers[i + 2]);
   // }
+  // console.log('driversShiftly is ' + this.driversShiftly);
+};
 
   //Make a table out of by-Shift data
   // this.generateTable = function () {
