@@ -107,7 +107,7 @@ function Store (loc,pizzasByShift,deliveriesByShift) {
   //Make a table out of by-Shift data
   this.generateTable = function () {
     //Reference for the body section
-    var body = document.getElementById('tablezone');
+    var tblParent = document.getElementById('salesTable'+loc);
     // create a table element and a tbody element
     var tbl = document.createElement('table');
     var tblBody = document.createElement('tbody');
@@ -142,7 +142,7 @@ function Store (loc,pizzasByShift,deliveriesByShift) {
   // put the <tbody> in the <table>
     tbl.appendChild(tblBody);
   // appends <table> into <body>
-    body.appendChild(tbl);
+    tblParent.appendChild(tbl);
   // sets the border attribute of tbl to 2;
     tbl.setAttribute('border', '2');
   };
@@ -154,48 +154,31 @@ var Hillsboro = new Store(
   [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
   [[0,4],[0,4],[1,4],[3,8],[5,12],[5,11]]
 );
-Hillsboro.generateTable();
-// var Pearl = new Store(
-//   'Pearl',
-//   [[1,7],[5,9],[2,13],[18,32],[5,12],[8,20]],
-//   [[1,3],[2,8],[1,6],[3,9],[1,3],[6,16]]
-// );
-// Pearl.generateTable();
-// var Downtown = new Store(
-//   'Downtown',
-//   [[0,4],[0,7],[2,15],[10,26],[8,22],[0,8]],
-//   [[0,4],[0,4],[1,4],[4,6],[7,15],[0,2]]
-// );
-// Downtown.generateTable();
-// var Buckman = new Store(
-//   'Buckman',
-//   [[0,4],[0,7],[5,15],[25,39],[22,36],[16,31]],
-//   [[0,4],[0,4],[0,4],[13,18],[5,22],[5,21]]
-// );
-// Buckman.generateTable();
-// var Airport = new Store(
-//   'Airport',
-//   [[2,7],[3,9],[1,5],[5,13],[22,42],[15,21]],
-//   [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]]
-//   );
-// Airport.generateTable();
-// var Clackamas = new Store(
-//   'Clackamas',
-//   [[0,4],[0,7],[2,15],[6,19],[4,8],[2,5]],
-//   [[0,4],[0,4],[1,4],[5,9],[2,5],[2,4]]
-// );
-// Clackamas.generateTable();
-
-// Calculate Odysseys
-
-// var Odysseys = 7 * (sumPizzas(Hillsboro.pizzas) +
-// sumPizzas(Pearl.pizzas) +
-// sumPizzas(Downtown.pizzas) +
-// sumPizzas(Buckman.pizzas) +
-// sumPizzas(Airport.pizzas) +
-// sumPizzas(Clackamas.pizzas));
-//
-// document.getElementById('Odysseys').textContent = Odysseys;
+var Pearl = new Store(
+  'Pearl',
+  [[1,7],[5,9],[2,13],[18,32],[5,12],[8,20]],
+  [[1,3],[2,8],[1,6],[3,9],[1,3],[6,16]]
+);
+var Downtown = new Store(
+  'Downtown',
+  [[0,4],[0,7],[2,15],[10,26],[8,22],[0,8]],
+  [[0,4],[0,4],[1,4],[4,6],[7,15],[0,2]]
+);
+var Buckman = new Store(
+  'Buckman',
+  [[0,4],[0,7],[5,15],[25,39],[22,36],[16,31]],
+  [[0,4],[0,4],[0,4],[13,18],[5,22],[5,21]]
+);
+var Airport = new Store(
+  'Airport',
+  [[2,7],[3,9],[1,5],[5,13],[22,42],[15,21]],
+  [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]]
+  );
+var Clackamas = new Store(
+  'Clackamas',
+  [[0,4],[0,7],[2,15],[6,19],[4,8],[2,5]],
+  [[0,4],[0,4],[1,4],[5,9],[2,5],[2,4]]
+);
 
 //Location object literal examples
 
