@@ -107,11 +107,12 @@ function Store (loc,pizzasByShift,deliveriesByShift) {
   //Make a table out of by-Shift data
   this.generateTable = function () {
     //Reference for the body section
-    var tblParent = document.getElementById('salesTable'+loc);
+    var tblParent = document.getElementById('salesTable' + loc);
     // create a table element and a tbody element
     var tbl = document.createElement('table');
     var tblBody = document.createElement('tbody');
     var cellText;
+    tblParent.appendChild();
 
     for (var i = 0; i < 6; i++) {
       //create a table row
