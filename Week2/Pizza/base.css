@@ -8,13 +8,12 @@ h1,h2,h3 {
   font-family: 'Montserrat', sans-serif;
 }
 
-div {
-    background-color: #267F7F;
+#weeklySales {
+    background-color: #ffffff;
     float:right;
     border-radius: 100%;
-    text-align: center;
-    height: 300px;
-    width: 300px;
+    height: 20rem;
+    width: 20rem;
 }
 
 img {
@@ -22,4 +21,16 @@ img {
   float: left;
   height: 500px;
   width: 500px;
+}
+
+span {
+  font-size:72px;
+  display: block;
+}
+
+#salesText {
+  font-size: 32px;
+  text-align: center;
+  padding: 3rem;
+  width: 14rem;
 }
