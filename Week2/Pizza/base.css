@@ -1,20 +1,81 @@
+@import url(https://fonts.googleapis.com/css?family=Wendy+One);
+
+.elm {
+  background-color: rgba(5, 157, 198, 1);
+;
+}
+.alto {
+  background-color: rgba(215, 218, 220, 1)
+;
+}
+.aztec {
+  background-color: rgba(18, 32, 42, 1)
+;
+}
+.half-baked {
+  background-color: rgba(134, 203, 208, 1)
+;
+}
+.cape-cod {
+  background-color: rgba(66, 70, 58, 1)
+;
+}
+
+
+/*body {
+=======
 body {
+>>>>>>> Day3Dev
   background-color: #007F7F;
   color: #00FFFF;
   font-family: 'Arial', sans-serif;
-}
+}*/
 
 h1,h2,h3 {
   font-family: 'Montserrat', sans-serif;
 }
+h1 {
+  font-size: 82px;
+  width: 50%;
+  display: inline;
+}
 
-.weeklySales {
-    background-color: #267F7F;
-    float:right;
+.clear {
+  font-family: 'Montserrat', sans-serif;
+  max-width: 920px;
+  clear: left;
+  margin-top: 57px;
+  border: 10px solid black;
+  border-radius:15px;
+  padding: 10px;
+}
+
+#times {
+  max-width: 500px;
+}
+
+#weeklySales {
+    /*background-color: #ffffff;*/
+    position: absolute;
+    top: 120px;
+    left: 600px;
     border-radius: 100%;
-    text-align: center;
-    height: 300px;
-    width: 300px;
+    height: 20rem;
+    width: 20rem;
+}
+
+span {
+  font-size:72px;
+  display: block;
+}
+
+#salesText {
+  font-family: 'Wendy One', sans-serif;
+  font-size: 28px;
+  color: rgba(102, 245, 255, 1);
+  text-align: center;
+  padding: 3rem;
+  width: 14rem;
 }
 
 img {
@@ -22,6 +83,9 @@ img {
   float: left;
   height: 500px;
   width: 500px;
+  margin-bottom: 50px;
+  opacity: 0.9;
+  box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75);
 }
 
 .shortField {
