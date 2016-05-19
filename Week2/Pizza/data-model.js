@@ -22,7 +22,7 @@ function Store (loc,pizzasByShift,deliveriesByShift) {
   console.log('this.location is ' + this.location);
   //Build array of Pizzas by hour
   this.pizzas = [];
-  for (var i = 800; i <= 2600; i += 100) {
+  for (var i = 800; i < 2600; i += 100) {
     if (i < 1100) {
       this.pizzas.push(getRandomInt(pizzasByShift[0][0],pizzasByShift[0][1]));
     } else if (i < 1400) {
@@ -33,7 +33,7 @@ function Store (loc,pizzasByShift,deliveriesByShift) {
       this.pizzas.push(getRandomInt(pizzasByShift[3][0],pizzasByShift[3][1]));
     } else if (i < 2300) {
       this.pizzas.push(getRandomInt(pizzasByShift[4][0],pizzasByShift[4][1]));
-    } else if (i <= 2600) {
+    } else if (i < 2600) {
       this.pizzas.push(getRandomInt(pizzasByShift[5][0],pizzasByShift[5][1]));
     }
   }
@@ -55,6 +55,8 @@ function Store (loc,pizzasByShift,deliveriesByShift) {
         this.deliveries.push(getRandomInt(deliveriesByShift[1][0],deliveriesByShift[1][1]));
       };
     } else if (i < 9) {
+      // var m = Math.min(this.pizzas[i],deliveriesByShift[2][1])
+      // then push(getRandomInt(deliveriesByShift[x][y], m))
       if (this.pizzas[i] > deliveriesByShift[2][1]) {
         this.deliveries.push(getRandomInt(deliveriesByShift[2][0],this.pizzas[i]));
       } else {
@@ -112,7 +114,7 @@ function Store (loc,pizzasByShift,deliveriesByShift) {
     var tbl = document.createElement('table');
     var tblBody = document.createElement('tbody');
     var cellText;
-    tblParent.appendChild();
+    //tblParent.appendChild();
 
     for (var i = 0; i < 6; i++) {
       //create a table row
@@ -180,7 +182,6 @@ var Clackamas = new Store(
   [[0,4],[0,7],[2,15],[6,19],[4,8],[2,5]],
   [[0,4],[0,4],[1,4],[5,9],[2,5],[2,4]]
 );
-
 //Location object literal examples
 
 // var Hillsboro = {
