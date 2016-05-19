@@ -9,285 +9,85 @@
     <h1>Pizza 3001</h1>
     <h3>Sales Data</h3>
 
-    <h2>Hillsboro</h2>
-    <table id='salesTableHillsboro'>
+    <fieldset>
+      <legend>New Shop</legend>
+      <input id='shopName' type='text' name='shopName' placeholder='Shop Location' />
+      <table>
+      <thead>
+        <td></td>
+        <td>Min Pizzas/hr</td>
+        <td>Max Pizzas/hr</td>
+        <td>Min Deliveries/hr</td>
+        <td>Max Deliveries/hr</td>
+      </thead>
       <tr>
-        <th scope='col'>Time</th>
-        <th scope='col'>Pizzas per Hour</th>
-        <th scope='col'>Deliveries per Hour</th>
-        <th scope='col'>Drivers Required</th>
+        <td>8a-11a</td>
+        <td><input type='number' class='shortField usrPizzaValue' value="0"/></td>
+        <td><input type='number' class='shortField usrPizzaValue' value="4"/></td>
+        <td><input type='number' class='shortField usrDeliveryValue' value="0"/></td>
+        <td><input type='number' class='shortField usrDeliveryValue' value="4"/></td>
       </tr>
       <tr>
-        <td> 8a - 11a</td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>11a-2p</td>
+        <td><input type='number' class='shortField usrPizzaValue' value="0"/></td>
+        <td><input type='number' class='shortField usrPizzaValue' value="7"/></td>
+        <td><input type='number' class='shortField usrDeliveryValue' value="0"/></td>
+        <td><input type='number' class='shortField usrDeliveryValue' value="4"/></td>
       </tr>
       <tr>
-        <td> 11a - 2p</td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>2p-5p</td>
+        <td><input type='number' class='shortField usrPizzaValue' value="2"/></td>
+        <td><input type='number' class='shortField usrPizzaValue' value="15"/></td>
+        <td><input type='number' class='shortField usrDeliveryValue' value="1"/></td>
+        <td><input type='number' class='shortField usrDeliveryValue' value="4"/></td>
       </tr>
       <tr>
-        <td> 2p - 5p</td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>5p-8p</td>
+        <td><input type='number' class='shortField usrPizzaValue' value="15"/></td>
+        <td><input type='number' class='shortField usrPizzaValue' value="35"/></td>
+        <td><input type='number' class='shortField usrDeliveryValue' value="3"/></td>
+        <td><input type='number' class='shortField usrDeliveryValue' value="8"/></td>
       </tr>
       <tr>
-        <td> 5p - 8p</td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>8p-11p</td>
+        <td><input type='number' class='shortField usrPizzaValue' value="12"/></td>
+        <td><input type='number' class='shortField usrPizzaValue' value="31"/></td>
+        <td><input type='number' class='shortField usrDeliveryValue' value="5"/></td>
+        <td><input type='number' class='shortField usrDeliveryValue' value="12"/></td>
       </tr>
       <tr>
-        <td> 8p - 11p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 11p - 2a</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
-
-    <h2>Pearl</h2>
-    <table id='salesTablePearl'>
-      <tr>
-        <th scope='col'>Time</th>
-        <th scope='col'>Pizzas per Hour</th>
-        <th scope='col'>Deliveries per Hour</th>
-        <th scope='col'>Drivers Required</th>
-      </tr>
-      <tr>
-        <td> 8a - 11a</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 11a - 2p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 2p - 5p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 5p - 8p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 8p - 11p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 11p - 2a</td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>11p-2a</td>
+        <td><input type='number' class='shortField usrPizzaValue' value="5"/></td>
+        <td><input type='number' class='shortField usrPizzaValue' value="20"/></td>
+        <td><input type='number' class='shortField usrDeliveryValue' value="5"/></td>
+        <td><input type='number' class='shortField usrDeliveryValue' value="11"/></td>
       </tr>
     </table>
+      <button id="Submit">Submit New Shop</button>
+    </fieldset>
 
-    <h2>Downtown</h2>
-    <table id='salesTableDowntown'>
-      <tr>
-        <th scope='col'>Time</th>
-        <th scope='col'>Pizzas per Hour</th>
-        <th scope='col'>Deliveries per Hour</th>
-        <th scope='col'>Drivers Required</th>
-      </tr>
-      <tr>
-        <td> 8a - 11a</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 11a - 2p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 2p - 5p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 5p - 8p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 8p - 11p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 11p - 2a</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
+    <h2 id = userTable></h2>
 
-    <h2>Buckman</h2>
-    <table id='salesTableBuckman'>
-      <tr>
-        <th scope='col'>Time</th>
-        <th scope='col'>Pizzas per Hour</th>
-        <th scope='col'>Deliveries per Hour</th>
-        <th scope='col'>Drivers Required</th>
-      </tr>
-      <tr>
-        <td> 8a - 11a</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 11a - 2p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 2p - 5p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 5p - 8p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 8p - 11p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 11p - 2a</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
+    <h2 id='salesTableHillsboro'>Hillsboro</h2>
+    <!-- <thead>
+      <td>Shift</td>
+      <td>Pizzas during this Shift</td>
+      <td>Deliveries during this Shift</td>
+      <td>Drivers Recommended</td>
+    </thead> -->
 
-    <h2>Airport</h2>
-    <table id='salesTableAirport'>
-      <tr>
-        <th scope='col'>Time</th>
-        <th scope='col'>Pizzas per Hour</th>
-        <th scope='col'>Deliveries per Hour</th>
-        <th scope='col'>Drivers Required</th>
-      </tr>
-      <tr>
-        <td> 8a - 11a</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 11a - 2p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 2p - 5p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 5p - 8p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 8p - 11p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 11p - 2a</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
+    <h2 id='salesTablePearl'>Pearl</h2>
 
-    <h2>Clackamas</h2>
-    <table id='salesTableClackamas'>
-      <tr>
-        <th scope='col'>Time</th>
-        <th scope='col'>Pizzas per Hour</th>
-        <th scope='col'>Deliveries per Hour</th>
-        <th scope='col'>Drivers Required</th>
-      </tr>
-      <tr>
-        <td> 8a - 11a</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 11a - 2p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 2p - 5p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 5p - 8p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 8p - 11p</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td> 11p - 2a</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
+    <h2 id='salesTableDowntown'>Downtown</h2>
 
-    
-<script src='jquery-1.12.3.min.js'></script>
+    <h2 id='salesTableBuckman'>Buckman</h2>
+
+    <h2 id='salesTableAirport'>Airport</h2>
+
+    <h2  id='salesTableClackamas'>Clackamas</h2>
+
 <script src='data-model.js'></script>
-<!-- <script src='tablegen.js'></script> -->
+<script src="ablegen.js" charset="utf-8"></script>
+<script src="userInput.js"></script>
   </body>
 </html>
