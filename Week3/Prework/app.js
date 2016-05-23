@@ -13,7 +13,7 @@ var images = [
 
 // Functions
 function getRand() {
-  var a =  Math.floor(5 * Math.random());
+  var a =  Math.floor(images.length * Math.random());
   // console.log (a);
   return a;
 }
@@ -24,7 +24,7 @@ function imgRefresh(a,b) {
 
 //User Interaction
 imgOne.addEventListener('click', function () {
-  images[r][1] += 1; //Does this work?
+  images[r][1] ++;
   var r = getRand();
   imgRefresh(imgOne, r);
   imgOneCount.textContent = images[r][1];
@@ -40,5 +40,7 @@ imgTwo.addEventListener('click', function () {
 //Something here to coerce things such that no two things can have the same image?
 
 //Beginning State
-imgRefresh(imgOne, getRand());
-imgRefresh(imgTwo, getRand());
+var r = getRand();
+var rr = getRand();
+imgRefresh(imgOne, r);
+imgRefresh(imgTwo, rr);
