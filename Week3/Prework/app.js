@@ -22,25 +22,25 @@ function imgRefresh(a,b) {
   a.setAttribute('src', images[b][0]);
 }
 
-//User Interaction
-imgOne.addEventListener('click', function () {
-  images[r][1] ++;
-  var r = getRand();
-  imgRefresh(imgOne, r);
-  imgOneCount.textContent = images[r][1];
-}, false);
-imgTwo.addEventListener('click', function () {
-  images[r][1] += 1;
-  var r = getRand();
-  imgRefresh(imgTwo, r);
-}, false);
-// imgOne.onclick = imgRefresh;
-// imgTwo.onclick = imgRefresh;
-
-//Something here to coerce things such that no two things can have the same image?
-
 //Beginning State
 var r = getRand();
 var rr = getRand();
 imgRefresh(imgOne, r);
 imgRefresh(imgTwo, rr);
+
+//User Interaction
+imgOne.addEventListener('click', function () {
+  images[r][1] ++;
+  r = getRand();
+  imgRefresh(imgOne, r);
+  imgOneCount.textContent = images[r][1];
+}, false);
+imgTwo.addEventListener('click', function () {
+  images[rr][1] ++;
+  rr = getRand();
+  imgRefresh(imgOne, rr);
+  imgOneCount.textContent = images[rr][1];
+}, false);// imgOne.onclick = imgRefresh;
+// imgTwo.onclick = imgRefresh;
+
+//Something here to coerce things such that no two things can have the same image?
