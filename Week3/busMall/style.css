@@ -1,0 +1,10 @@
+#buttonBar {
+  display: none;
+}
+
+img {
+  background-position: center;
+  border: 10px bue dashed;
+  height: 250px;
+  width: 250px;
+}
