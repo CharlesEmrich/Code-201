@@ -7,10 +7,14 @@ var imgTwoCount = document.getElementById('imgTwoCount');
 var imgThreeCount = document.getElementById('imgThreeCount');
 var buttonBar = document.getElementById('buttonBar');
 var plot = document.getElementById('plot');
+var newRound = document.getElementById('newRound');
+var showResults = document.getElementById('showResults');
+var moreVotes = document.getElementById('moreVotes');
 
 //Universal Variables
 var totalClicks = 0;
 var indices = [];
+var eightMore = false;
 
 //Frequently Used Functions
 var gebi = function(el) {
@@ -51,6 +55,9 @@ function revealButtons() { //Currently doesn't seem to work?
 function hideButtons() {
   buttonBar.setAttribute('style','visibility: hidden');
 }
+function resetState() {
+  stuff
+}
 
 function buttonClick(a,b) {
   imgObjs[indices[a]].timesClicked ++;
@@ -67,7 +74,15 @@ function buttonClick(a,b) {
     console.log('PING');
     revealButtons();
   } else if (totalClicks > 16 && totalClicks % 8 === 0) {
-    revealButtons();
+    if (!eightMore) {
+      revealButtons();
+    } else {
+      revealButtons();
+      showResults.setAttribute('style','visibility: hidden');
+      moreVotes.setAttribute('style','visibility: hidden');
+      newRound.setAttribute('style','visibility: visible');
+      graphPlot();
+    }
     console.log('PING');
   }
 }
@@ -118,9 +133,12 @@ imgThree.addEventListener('click', function () {
 }, false);
 
 //button event handlers
-moreVotes.addEventListener('click', hideButtons, false);
-showResult.addEventListener('click', function() {
-  stuff
-}, false)
+moreVotes.addEventListener('click', function() {
+  hideButtons();
+  eightMore = true;
+}, false);
+showResults.addEventListener('click', function() {
+  graphPlot();
+}, false);
 
 //use modulo to check on 8 votes button condition

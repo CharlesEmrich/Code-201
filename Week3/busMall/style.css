@@ -6,6 +6,10 @@
   /*background-color: tan;*/
 }
 
+#newRound {
+  visibility: hidden;
+}
+
 img {
   background-position: center;
   display: inline;
