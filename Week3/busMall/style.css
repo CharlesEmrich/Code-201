@@ -1,9 +1,9 @@
 #buttonBar {
-  /*display: none;*/
+  visibility: hidden;
   height: 50px;
   width: 100%;
 /*padding-left: 490px;*/
-  background-color: tan;
+  /*background-color: tan;*/
 }
 
 img {

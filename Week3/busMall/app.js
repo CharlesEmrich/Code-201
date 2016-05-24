@@ -43,6 +43,15 @@ function reIndex() {
   } while (indices[0] === indices[1] || indices[1] === indices[2] || indices[2] === indices[0]); //force all pictures to be different.
 }
 
+//Button Management
+function revealButtons() { //Currently doesn't seem to work?
+  buttonBar.setAttribute('style','visibility: visible');
+}
+
+function hideButtons() {
+  buttonBar.setAttribute('style','visibility: hidden');
+}
+
 function buttonClick(a,b) {
   imgObjs[indices[a]].timesClicked ++;
   totalClicks ++;
@@ -61,15 +70,6 @@ function buttonClick(a,b) {
     revealButtons();
     console.log('PING');
   }
-}
-
-//Button Management
-function revealButtons() { //Currently doesn't seem to work?
-  buttonBar.setAttribute('background-color','black');
-}
-
-function hideButtons() {
-  buttonBar.setAttribute('display', 'none');
 }
 
 //Constructing Image Objects
@@ -118,6 +118,9 @@ imgThree.addEventListener('click', function () {
 }, false);
 
 //button event handlers
-
+moreVotes.addEventListener('click', hideButtons, false);
+showResult.addEventListener('click', function() {
+  stuff
+}, false)
 
 //use modulo to check on 8 votes button condition
