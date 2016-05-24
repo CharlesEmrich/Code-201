@@ -34,7 +34,7 @@ function imgRefresh() {
   imgThreeCount.textContent = imgObjs[indices[2]].timesClicked;
 };
 
-function reIndex() { //appears to be bugged?
+function reIndex() {
   do {
     indices = [];
     indices.push(getRand());
