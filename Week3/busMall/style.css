@@ -1,10 +1,33 @@
 #buttonBar {
-  display: none;
+  /*display: none;*/
+  height: 50px;
+  width: 100%;
+/*padding-left: 490px;*/
+  background-color: tan;
 }
 
 img {
   background-position: center;
-  border: 10px bue dashed;
-  height: 250px;
-  width: 250px;
+  display: inline;
+  border: 10px blue dashed;
+  height: 200px;
+  width: 200px;
+  margin: auto 25px;
+}
+
+#imageZone {
+  display: flex;
+
+}
+
+h1 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
 }
