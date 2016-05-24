@@ -10,6 +10,7 @@ var plot = document.getElementById('plot');
 
 //Universal Variables
 var totalClicks = 0;
+var indices = [];
 
 //Frequently Used Functions
 var gebi = function(el) {
@@ -21,9 +22,46 @@ function getRand() {
   return a;
 };
 
-function imgRefresh(a,b) {
-  a.setAttribute('src', imgObjs[b].src);
+function imgRefresh() {
+  imgOne.setAttribute('src', imgObjs[indices[0]].src);
+  imgTwo.setAttribute('src', imgObjs[indices[1]].src);
+  imgThree.setAttribute('src', imgObjs[indices[2]].src);
+  imgOneName.textContent = imgObjs[indices[0]].productName;
+  imgTwoName.textContent = imgObjs[indices[1]].productName;
+  imgThreeName.textContent = imgObjs[indices[2]].productName;
+  imgOneCount.textContent = imgObjs[indices[0]].timesClicked;
+  imgTwoCount.textContent = imgObjs[indices[1]].timesClicked;
+  imgThreeCount.textContent = imgObjs[indices[2]].timesClicked;
 };
+
+function reIndex() { //appears to be bugged?
+  do {
+    indices = [];
+    indices.push(getRand());
+    indices.push(getRand());
+    indices.push(getRand());
+  } while (indices[0] === indices[1] || indices[1] === indices[2] || indices[2] === indices[0]); //force all pictures to be different.
+}
+
+function buttonClick(a,b) {
+  imgObjs[indices[a]].timesClicked ++;
+  totalClicks ++;
+  // if length thingsSHown = length possible outcomes, reset thingsshown
+  reIndex();
+  //if it was already there, reroll R
+  //push r to thingsWeveShown
+  imgRefresh();
+  imgObjs[indices[a]].timesShown ++;
+  // [b + 'Count'].textContent = imgObjs[indices[a]].timesClicked;
+  // [b + 'Name'].textContent = imgObjs[indices[a]].productName;
+  if (totalClicks === 16) {
+    console.log('PING');
+    revealButtons();
+  } else if (totalClicks > 16 && totalClicks % 8 === 0) {
+    revealButtons();
+    console.log('PING');
+  }
+}
 
 //Button Management
 function revealButtons() { //Currently doesn't seem to work?
@@ -44,7 +82,7 @@ var Image = function(src,name) {
 
 var images = [
   ['3e3275637baf7a67bedd62a85170ab9a','Santa Hat'],
-  ['4RfSFb4','Sleep Party Hat'],
+  ['4RfSFb4','Sleepy Party Hat'],
   ['images','Tiny Blue Hat'],
   ['snake14','Fancy Feather Hat'],
   ['The-World’s-Top-10-Best-Images-of-Snakes-in-Hats-5','Dapper Top Hat'],
@@ -65,55 +103,18 @@ for (var i = 0; i < images.length; i++) {
 console.log(imgObjs);
 
 //Beginning State
-var r = getRand(); //setting indices for each image
-var rr = getRand();
-var rrr = getRand();
-// if r === rr
-imgRefresh(imgOne, r); //populating the indexed images
-imgRefresh(imgTwo, rr);
-imgRefresh(imgThree, rrr);
-imgOneName.textContent = imgObjs[r].productName; //Displaying productName
-imgTwoName.textContent = imgObjs[rr].productName;
-imgThreeName.textContent = imgObjs[rrr].productName;
+reIndex();
+imgRefresh();
 
 //User Interaction
-//Surely this can be dried?
 imgOne.addEventListener('click', function () {
-  imgObjs[r].timesClicked ++;
-  totalClicks ++;
-  // if length thingsSHown = length possible outcomes, reset thingsshown
-  r = getRand();
-  //if it was already there, reroll R
-  //push r to thingsWeveShown
-  imgRefresh(imgOne, r);
-  imgObjs[r].timesShown ++;
-  imgOneCount.textContent = imgObjs[r].timesClicked;
-  imgOneName.textContent = imgObjs[r].productName;
-  if (totalClicks === 16) {
-    console.log('PING');
-    revealButtons();
-  } else if (totalClicks > 16 && totalClicks % 8 === 0) {
-    revealButtons();
-    console.log('PING');
-  }
+  buttonClick(0,'imgOne');
 }, false);
 imgTwo.addEventListener('click', function () {
-  imgObjs[rr].timesClicked ++;
-  totalClicks ++;
-  rr = getRand();
-  imgRefresh(imgTwo, rr);
-  imgObjs[rr].timesShown ++;
-  imgTwoCount.textContent = imgObjs[rr].timesClicked;
-  imgTwoName.textContent = imgObjs[rr].productName;
+  buttonClick(1,'imgTwo');
 }, false);
 imgThree.addEventListener('click', function () {
-  imgObjs[rrr].timesClicked ++;
-  totalClicks ++;
-  rrr = getRand();
-  imgRefresh(imgThree, rrr);
-  imgObjs[rrr].timesShown ++;
-  imgThreeCount.textContent = imgObjs[rrr].timesClicked;
-  imgThreeName.textContent = imgObjs[rrr].productName;
+  buttonClick(2,'imgThree');
 }, false);
 
 //button event handlers
