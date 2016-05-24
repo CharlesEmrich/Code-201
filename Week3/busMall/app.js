@@ -59,6 +59,38 @@ function resetState() {
   stuff
 }
 
+//Graph Plotting //Used Chart.js documentation
+function graphPlot() { //variabe domain?
+  plot.setAttribute('style','visibility: visible');
+  var percentages = [];
+  for (var i = 0; i < imgObjs.length; i++) {
+    var datum = (imgObjs[i].timesClicked / imgObjs[i].timesShown);
+    percentages.push(datum);
+  }
+  var snakeHats = [];
+  for (var i = 0; i < imgObjs.length; i++) {
+    snakeHats.push(imgObjs[i].productName);
+  }
+  var resultChart = new Chart(plot, {
+    type: 'bar',
+    data: {
+      labels: snakeHats,
+      datasets: [{
+        label: '% of times clicked when shown',
+        data: percentages,
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: { beginAtZero:true }
+        }]
+      }
+    }
+  });
+}
+
+//Image Clicking function
 function buttonClick(a,b) {
   imgObjs[indices[a]].timesClicked ++;
   totalClicks ++;
