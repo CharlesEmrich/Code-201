@@ -56,15 +56,34 @@ function hideButtons() {
   buttonBar.setAttribute('style','visibility: hidden');
 }
 function resetState() {
-  stuff
+  //Reset global Variables
+  totalClicks = 0;
+  indices = [];
+  eightMore = false;
+  imgObjs = [];
+  //Rebuild Object Array
+  for (var i = 0; i < images.length; i++) {
+    var a = new Image(images[i][0],images[i][1]);
+    imgObjs.push(a);
+  }
+  //Repopulate page
+  reIndex();
+  imgRefresh();
+  //hide buttonBar
+  hideButtons();
 }
 
 //Graph Plotting //Used Chart.js documentation
 function graphPlot() { //variabe domain?
   plot.setAttribute('style','visibility: visible');
+  var clickArray = [];
+  for (var i = 0; i < imgObjs.length; i++) {
+    var datum = (imgObjs[i].timesClicked);
+    clickArray.push(datum);
+  }
   var percentages = [];
   for (var i = 0; i < imgObjs.length; i++) {
-    var datum = (imgObjs[i].timesClicked / imgObjs[i].timesShown);
+    var datum = 100 * (imgObjs[i].timesClicked / imgObjs[i].timesShown);
     percentages.push(datum);
   }
   var snakeHats = [];
@@ -78,7 +97,11 @@ function graphPlot() { //variabe domain?
       datasets: [{
         label: '% of times clicked when shown',
         data: percentages,
-      }]
+      },
+    {
+      label: 'timesClicked',
+      data: clickArray,
+    }]
     },
     options: {
       scales: {
@@ -93,13 +116,16 @@ function graphPlot() { //variabe domain?
 //Image Clicking function
 function buttonClick(a,b) {
   imgObjs[indices[a]].timesClicked ++;
+  console.log(imgObjs[indices[a]].productName + 'clicked.');
   totalClicks ++;
   // if length thingsSHown = length possible outcomes, reset thingsshown
   reIndex();
   //if it was already there, reroll R
   //push r to thingsWeveShown
   imgRefresh();
-  imgObjs[indices[a]].timesShown ++;
+  imgObjs[indices[0]].timesShown ++;
+  imgObjs[indices[1]].timesShown ++;
+  imgObjs[indices[2]].timesShown ++;
   // [b + 'Count'].textContent = imgObjs[indices[a]].timesClicked;
   // [b + 'Name'].textContent = imgObjs[indices[a]].productName;
   if (totalClicks === 16) {
