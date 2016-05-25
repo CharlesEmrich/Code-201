@@ -55,6 +55,8 @@ function reIndex() {
 //Button Management
 function revealButtons() { //Currently doesn't seem to work?
   buttonBar.setAttribute('style','visibility: visible');
+  showResults.setAttribute('style','visibility: visible');
+  moreVotes.setAttribute('style','visibility: visible');
 }
 
 function hideButtons() {
@@ -72,6 +74,8 @@ function saveVoteState() {
 function resetState() {
   //Reset localStorage
   localStorage.clear();
+  //lower forcefield
+  forcefield.setAttribute('style', 'z-index: -20');
   //Reset global Variables
   dispState = 0;
   totalClicks = 0;
@@ -87,7 +91,10 @@ function resetState() {
   reIndex();
   imgRefresh();
   //hide buttonBar
-  hideButtons();
+  showResults.setAttribute('style','visibility: hidden');
+  moreVotes.setAttribute('style','visibility: hidden');
+  newRound.setAttribute('style','visibility: hidden');
+  plot.setAttribute('style','visibility: hidden');
 }
 
 //Graph Plotting //Used Chart.js documentation
@@ -138,21 +145,14 @@ function buttonClick(a,b) {
   } else if (totalClicks > 16 && totalClicks % 8 === 0) {
     if (!eightMore) {
       revealButtons();
+      newRound.setAttribute('style','visibility: visible');
       dispState = 1;
     } else {
       revealButtons();
       showResults.setAttribute('style','visibility: hidden');
       moreVotes.setAttribute('style','visibility: hidden');
       newRound.setAttribute('style','visibility: visible');
-      imgOne.removeEventListener('click', function () {
-        buttonClick(0,'imgOne');
-      }, false);
-      imgTwo.removeEventListener('click', function () {
-        buttonClick(1,'imgTwo');
-      }, false);
-      imgThree.removeEventListener('click', function () {
-        buttonClick(2,'imgThree');
-      }, false);
+      forcefield.setAttribute('style', 'z-index: 100');
       graphPlot();
       dispState = 2;
     };
@@ -193,9 +193,38 @@ for (var i = 0; i < images.length; i++) {
 console.log(imgObjs);
 
 //Beginning State
-reIndex();
-imgRefresh();
-saveVoteState();
+if (!localStorage.totalClicks) {
+  reIndex();
+  imgRefresh();
+  saveVoteState();
+} else {
+  imgObjs = JSON.parse(localStorage.imgObjs);
+  indices = JSON.parse(localStorage.indices);
+  totalClicks = localStorage.totalClicks;
+  switch (localStorage.dispState) {
+  case 0:
+    showResults.setAttribute('style','visibility: hidden');
+    moreVotes.setAttribute('style','visibility: hidden');
+    newRound.setAttribute('style','visibility: hidden');
+    plot.setAttribute('style','visibility: hidden');
+    break;
+  case 1:
+    showResults.setAttribute('style','visibility: visible');
+    moreVotes.setAttribute('style','visibility: visible');
+    newRound.setAttribute('style','visibility: visible');
+    plot.setAttribute('style','visibility: hidden');
+    break;
+  case 2:
+    showResults.setAttribute('style','visibility: hidden');
+    moreVotes.setAttribute('style','visibility: hidden');
+    newRound.setAttribute('style','visibility: visible');
+    plot.setAttribute('style','visibility: visible');
+    forcefield.setAttribute('style', 'z-index: 100');
+    graphPlot();
+    break;
+  }
+  imgRefresh();
+};
 
 //User Interaction
 imgOne.addEventListener('click', function () {
@@ -210,7 +239,10 @@ imgThree.addEventListener('click', function () {
 
 //button event handlers
 moreVotes.addEventListener('click', function() {
-  hideButtons();
+  showResults.setAttribute('style','visibility: hidden');
+  moreVotes.setAttribute('style','visibility: hidden');
+  newRound.setAttribute('style','visibility: hidden');
+  plot.setAttribute('style','visibility: hidden');
   eightMore = true;
   totalClicks = 17;
 }, false);
