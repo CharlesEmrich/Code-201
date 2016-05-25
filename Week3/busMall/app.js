@@ -10,6 +10,7 @@ var plot = document.getElementById('plot');
 var newRound = document.getElementById('newRound');
 var showResults = document.getElementById('showResults');
 var moreVotes = document.getElementById('moreVotes');
+var forcefield = document.getElementById('forcefield');
 
 //Universal Variables
 var totalClicks = 0;
@@ -58,6 +59,7 @@ function revealButtons() { //Currently doesn't seem to work?
 
 function hideButtons() {
   buttonBar.setAttribute('style','visibility: hidden');
+  newRound.setAttribute('style','visibility: hidden');
   plot.setAttribute('style','visibility: hidden');
 }
 
@@ -142,6 +144,15 @@ function buttonClick(a,b) {
       showResults.setAttribute('style','visibility: hidden');
       moreVotes.setAttribute('style','visibility: hidden');
       newRound.setAttribute('style','visibility: visible');
+      imgOne.removeEventListener('click', function () {
+        buttonClick(0,'imgOne');
+      }, false);
+      imgTwo.removeEventListener('click', function () {
+        buttonClick(1,'imgTwo');
+      }, false);
+      imgThree.removeEventListener('click', function () {
+        buttonClick(2,'imgThree');
+      }, false);
       graphPlot();
       dispState = 2;
     };
@@ -201,9 +212,13 @@ imgThree.addEventListener('click', function () {
 moreVotes.addEventListener('click', function() {
   hideButtons();
   eightMore = true;
+  totalClicks = 17;
 }, false);
 showResults.addEventListener('click', function() {
   graphPlot();
+}, false);
+newRound.addEventListener('click', function() {
+  resetState();
 }, false);
 
 //use modulo to check on 8 votes button condition
