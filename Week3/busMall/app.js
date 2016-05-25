@@ -7,10 +7,14 @@ var imgTwoCount = document.getElementById('imgTwoCount');
 var imgThreeCount = document.getElementById('imgThreeCount');
 var buttonBar = document.getElementById('buttonBar');
 var plot = document.getElementById('plot');
+var newRound = document.getElementById('newRound');
+var showResults = document.getElementById('showResults');
+var moreVotes = document.getElementById('moreVotes');
 
 //Universal Variables
 var totalClicks = 0;
 var indices = [];
+var eightMore = false;
 
 //Frequently Used Functions
 var gebi = function(el) {
@@ -43,33 +47,99 @@ function reIndex() {
   } while (indices[0] === indices[1] || indices[1] === indices[2] || indices[2] === indices[0]); //force all pictures to be different.
 }
 
+//Button Management
+function revealButtons() { //Currently doesn't seem to work?
+  buttonBar.setAttribute('style','visibility: visible');
+}
+
+function hideButtons() {
+  buttonBar.setAttribute('style','visibility: hidden');
+}
+function resetState() {
+  //Reset global Variables
+  totalClicks = 0;
+  indices = [];
+  eightMore = false;
+  imgObjs = [];
+  //Rebuild Object Array
+  for (var i = 0; i < images.length; i++) {
+    var a = new Image(images[i][0],images[i][1]);
+    imgObjs.push(a);
+  }
+  //Repopulate page
+  reIndex();
+  imgRefresh();
+  //hide buttonBar
+  hideButtons();
+}
+
+//Graph Plotting //Used Chart.js documentation
+function graphPlot() { //variabe domain?
+  plot.setAttribute('style','visibility: visible');
+  // var clickArray = [];
+  // for (var i = 0; i < imgObjs.length; i++) {
+  //   var datum = (imgObjs[i].timesClicked);
+  //   clickArray.push(datum);
+  // }
+  var percentages = [];
+  for (var i = 0; i < imgObjs.length; i++) {
+    var datum = 100 * (imgObjs[i].timesClicked / imgObjs[i].timesShown);
+    percentages.push(datum);
+  }
+  var snakeHats = [];
+  for (var i = 0; i < imgObjs.length; i++) {
+    snakeHats.push(imgObjs[i].productName);
+  }
+  var resultChart = new Chart(plot, {
+    type: 'bar',
+    data: {
+      labels: snakeHats,
+      datasets: [{
+        label: '% of times clicked when shown',
+        data: percentages,
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: { beginAtZero:true }
+        }]
+      }
+    }
+  });
+}
+
+//Image Clicking function
 function buttonClick(a,b) {
   imgObjs[indices[a]].timesClicked ++;
+  // console.log(imgObjs[indices[a]].productName + 'clicked.');
   totalClicks ++;
   // if length thingsSHown = length possible outcomes, reset thingsshown
   reIndex();
   //if it was already there, reroll R
   //push r to thingsWeveShown
   imgRefresh();
-  imgObjs[indices[a]].timesShown ++;
+  imgObjs[indices[0]].timesShown ++;
+  imgObjs[indices[1]].timesShown ++;
+  imgObjs[indices[2]].timesShown ++;
+  // console.log('Now showing: ' + imgObjs[indices[0]].productName + ' & ' + imgObjs[indices[1]].productName + ' & ' + imgObjs[indices[2]].productName);
   // [b + 'Count'].textContent = imgObjs[indices[a]].timesClicked;
   // [b + 'Name'].textContent = imgObjs[indices[a]].productName;
-  if (totalClicks === 16) {
+  if (totalClicks === 4) {
     console.log('PING');
     revealButtons();
   } else if (totalClicks > 16 && totalClicks % 8 === 0) {
-    revealButtons();
+    if (!eightMore) {
+      revealButtons();
+    } else {
+      revealButtons();
+      showResults.setAttribute('style','visibility: hidden');
+      moreVotes.setAttribute('style','visibility: hidden');
+      newRound.setAttribute('style','visibility: visible');
+      graphPlot();
+    }
     console.log('PING');
   }
-}
-
-//Button Management
-function revealButtons() { //Currently doesn't seem to work?
-  buttonBar.setAttribute('background-color','black');
-}
-
-function hideButtons() {
-  buttonBar.setAttribute('display', 'none');
 }
 
 //Constructing Image Objects
@@ -105,6 +175,9 @@ console.log(imgObjs);
 //Beginning State
 reIndex();
 imgRefresh();
+imgObjs[indices[0]].timesShown ++;
+imgObjs[indices[1]].timesShown ++;
+imgObjs[indices[2]].timesShown ++;
 
 //User Interaction
 imgOne.addEventListener('click', function () {
@@ -118,6 +191,12 @@ imgThree.addEventListener('click', function () {
 }, false);
 
 //button event handlers
-
+moreVotes.addEventListener('click', function() {
+  hideButtons();
+  eightMore = true;
+}, false);
+showResults.addEventListener('click', function() {
+  graphPlot();
+}, false);
 
 //use modulo to check on 8 votes button condition
