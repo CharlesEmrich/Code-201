@@ -15,6 +15,7 @@ var moreVotes = document.getElementById('moreVotes');
 var totalClicks = 0;
 var indices = [];
 var eightMore = false;
+var dispState = 0;
 
 //Frequently Used Functions
 var gebi = function(el) {
@@ -59,8 +60,18 @@ function hideButtons() {
   buttonBar.setAttribute('style','visibility: hidden');
   plot.setAttribute('style','visibility: hidden');
 }
+
+function saveVoteState() {
+  localStorage.imgObjs = JSON.stringify(imgObjs);
+  localStorage.totalClicks = totalClicks;
+  localStorage.indices = JSON.stringify(indices);
+}
+
 function resetState() {
+  //Reset localStorage
+  localStorage.clear();
   //Reset global Variables
+  dispState = 0;
   totalClicks = 0;
   indices = [];
   eightMore = false;
@@ -121,21 +132,23 @@ function buttonClick(a,b) {
   imgRefresh();
   if (totalClicks === 16) {
     revealButtons();
+    dispState = 1;
   } else if (totalClicks > 16 && totalClicks % 8 === 0) {
     if (!eightMore) {
       revealButtons();
+      dispState = 1;
     } else {
       revealButtons();
       showResults.setAttribute('style','visibility: hidden');
       moreVotes.setAttribute('style','visibility: hidden');
       newRound.setAttribute('style','visibility: visible');
       graphPlot();
+      dispState = 2;
     };
   }
   //save app state to localStorage
-  localStorage.imgObjs = JSON.stringify(imgObjs);
-  localStorage.totalClicks = totalClicks;
-  localStorage.indices = JSON.stringify(indices);
+  saveVoteState();
+  localStorage.dispState = dispState;
 }
 
 //Constructing Image Objects
@@ -171,6 +184,7 @@ console.log(imgObjs);
 //Beginning State
 reIndex();
 imgRefresh();
+saveVoteState();
 
 //User Interaction
 imgOne.addEventListener('click', function () {
