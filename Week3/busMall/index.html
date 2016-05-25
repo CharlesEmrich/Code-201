@@ -8,23 +8,26 @@
     <h1>busMall : A Place for Hats</h1>
     <h3>Instructions</h3>
     <p id='instructions'> To use this app, just click the pictures to vote on those you find the most appealing. After you've voted on sixteen of them, you may choose to view your results or continue and enter eight more votes.</p>
+<div id="forcefield">
+</div>
     <div id="imageZone">
     <div id='firstItem'>
       <img id='imgOne' />
-      <p id='imgOneCount'> 0 </p>
-      <p id="imgOneName">test</p>
+      <p class="count" id='imgOneCount'> 0 </p>
+      <p class="name" id="imgOneName">test</p>
     </div>
     <div id='secondItem'>
       <img id='imgTwo' />
-      <p id='imgTwoCount'> 0 </p>
-      <p id="imgTwoName">test</p>
+      <p class="count" id='imgTwoCount'> 0 </p>
+      <p class="name" id="imgTwoName">test</p>
     </div>
     <div id='thirdItem'>
       <img id='imgThree' />
-      <p id='imgThreeCount'> 0 </p>
-      <p id="imgThreeName">test</p>
+      <p class="count" id='imgThreeCount'> 0 </p>
+      <p class="name" id="imgThreeName">test</p>
     </div>
   </div>
+
   <div id='buttonBar'>
     <button id="showResults">Show Results</button>
     <button id="moreVotes">8 More Votes</button>
@@ -32,7 +35,7 @@
   </div>
     <canvas  id='plot' width="100%" height="25%">
     </canvas>
-    
+
     <script src="vendor/Chart.min.js"></script>
     <script src='app.js'></script>
   </body>

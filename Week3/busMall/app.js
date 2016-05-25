@@ -10,11 +10,13 @@ var plot = document.getElementById('plot');
 var newRound = document.getElementById('newRound');
 var showResults = document.getElementById('showResults');
 var moreVotes = document.getElementById('moreVotes');
+var forcefield = document.getElementById('forcefield');
 
 //Universal Variables
 var totalClicks = 0;
 var indices = [];
 var eightMore = false;
+var dispState = 0;
 
 //Frequently Used Functions
 var gebi = function(el) {
@@ -36,6 +38,9 @@ function imgRefresh() {
   imgOneCount.textContent = imgObjs[indices[0]].timesClicked;
   imgTwoCount.textContent = imgObjs[indices[1]].timesClicked;
   imgThreeCount.textContent = imgObjs[indices[2]].timesClicked;
+  imgObjs[indices[0]].timesShown ++;
+  imgObjs[indices[1]].timesShown ++;
+  imgObjs[indices[2]].timesShown ++;
 };
 
 function reIndex() {
@@ -50,13 +55,29 @@ function reIndex() {
 //Button Management
 function revealButtons() { //Currently doesn't seem to work?
   buttonBar.setAttribute('style','visibility: visible');
+  showResults.setAttribute('style','visibility: visible');
+  moreVotes.setAttribute('style','visibility: visible');
 }
 
 function hideButtons() {
   buttonBar.setAttribute('style','visibility: hidden');
+  newRound.setAttribute('style','visibility: hidden');
+  plot.setAttribute('style','visibility: hidden');
 }
+
+function saveVoteState() {
+  localStorage.imgObjs = JSON.stringify(imgObjs);
+  localStorage.totalClicks = totalClicks;
+  localStorage.indices = JSON.stringify(indices);
+}
+
 function resetState() {
+  //Reset localStorage
+  localStorage.clear();
+  //lower forcefield
+  forcefield.setAttribute('style', 'z-index: -20');
   //Reset global Variables
+  dispState = 0;
   totalClicks = 0;
   indices = [];
   eightMore = false;
@@ -70,7 +91,10 @@ function resetState() {
   reIndex();
   imgRefresh();
   //hide buttonBar
-  hideButtons();
+  showResults.setAttribute('style','visibility: hidden');
+  moreVotes.setAttribute('style','visibility: hidden');
+  newRound.setAttribute('style','visibility: hidden');
+  plot.setAttribute('style','visibility: hidden');
 }
 
 //Graph Plotting //Used Chart.js documentation
@@ -112,34 +136,30 @@ function graphPlot() { //variabe domain?
 //Image Clicking function
 function buttonClick(a,b) {
   imgObjs[indices[a]].timesClicked ++;
-  // console.log(imgObjs[indices[a]].productName + 'clicked.');
   totalClicks ++;
-  // if length thingsSHown = length possible outcomes, reset thingsshown
   reIndex();
-  //if it was already there, reroll R
-  //push r to thingsWeveShown
   imgRefresh();
-  imgObjs[indices[0]].timesShown ++;
-  imgObjs[indices[1]].timesShown ++;
-  imgObjs[indices[2]].timesShown ++;
-  // console.log('Now showing: ' + imgObjs[indices[0]].productName + ' & ' + imgObjs[indices[1]].productName + ' & ' + imgObjs[indices[2]].productName);
-  // [b + 'Count'].textContent = imgObjs[indices[a]].timesClicked;
-  // [b + 'Name'].textContent = imgObjs[indices[a]].productName;
-  if (totalClicks === 4) {
-    console.log('PING');
+  if (totalClicks === 16) {
     revealButtons();
+    dispState = 1;
   } else if (totalClicks > 16 && totalClicks % 8 === 0) {
     if (!eightMore) {
       revealButtons();
+      newRound.setAttribute('style','visibility: visible');
+      dispState = 1;
     } else {
       revealButtons();
       showResults.setAttribute('style','visibility: hidden');
       moreVotes.setAttribute('style','visibility: hidden');
       newRound.setAttribute('style','visibility: visible');
+      forcefield.setAttribute('style', 'z-index: 100');
       graphPlot();
-    }
-    console.log('PING');
+      dispState = 2;
+    };
   }
+  //save app state to localStorage
+  saveVoteState();
+  localStorage.dispState = dispState;
 }
 
 //Constructing Image Objects
@@ -173,11 +193,38 @@ for (var i = 0; i < images.length; i++) {
 console.log(imgObjs);
 
 //Beginning State
-reIndex();
-imgRefresh();
-imgObjs[indices[0]].timesShown ++;
-imgObjs[indices[1]].timesShown ++;
-imgObjs[indices[2]].timesShown ++;
+if (!localStorage.totalClicks) {
+  reIndex();
+  imgRefresh();
+  saveVoteState();
+} else {
+  imgObjs = JSON.parse(localStorage.imgObjs);
+  indices = JSON.parse(localStorage.indices);
+  totalClicks = localStorage.totalClicks;
+  switch (localStorage.dispState) {
+  case 0:
+    showResults.setAttribute('style','visibility: hidden');
+    moreVotes.setAttribute('style','visibility: hidden');
+    newRound.setAttribute('style','visibility: hidden');
+    plot.setAttribute('style','visibility: hidden');
+    break;
+  case 1:
+    showResults.setAttribute('style','visibility: visible');
+    moreVotes.setAttribute('style','visibility: visible');
+    newRound.setAttribute('style','visibility: visible');
+    plot.setAttribute('style','visibility: hidden');
+    break;
+  case 2:
+    showResults.setAttribute('style','visibility: hidden');
+    moreVotes.setAttribute('style','visibility: hidden');
+    newRound.setAttribute('style','visibility: visible');
+    plot.setAttribute('style','visibility: visible');
+    forcefield.setAttribute('style', 'z-index: 100');
+    graphPlot();
+    break;
+  }
+  imgRefresh();
+};
 
 //User Interaction
 imgOne.addEventListener('click', function () {
@@ -192,11 +239,18 @@ imgThree.addEventListener('click', function () {
 
 //button event handlers
 moreVotes.addEventListener('click', function() {
-  hideButtons();
+  showResults.setAttribute('style','visibility: hidden');
+  moreVotes.setAttribute('style','visibility: hidden');
+  newRound.setAttribute('style','visibility: hidden');
+  plot.setAttribute('style','visibility: hidden');
   eightMore = true;
+  totalClicks = 17;
 }, false);
 showResults.addEventListener('click', function() {
   graphPlot();
+}, false);
+newRound.addEventListener('click', function() {
+  resetState();
 }, false);
 
 //use modulo to check on 8 votes button condition
