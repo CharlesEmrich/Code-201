@@ -36,6 +36,9 @@ function imgRefresh() {
   imgOneCount.textContent = imgObjs[indices[0]].timesClicked;
   imgTwoCount.textContent = imgObjs[indices[1]].timesClicked;
   imgThreeCount.textContent = imgObjs[indices[2]].timesClicked;
+  imgObjs[indices[0]].timesShown ++;
+  imgObjs[indices[1]].timesShown ++;
+  imgObjs[indices[2]].timesShown ++;
 };
 
 function reIndex() {
@@ -54,6 +57,7 @@ function revealButtons() { //Currently doesn't seem to work?
 
 function hideButtons() {
   buttonBar.setAttribute('style','visibility: hidden');
+  plot.setAttribute('style','visibility: hidden');
 }
 function resetState() {
   //Reset global Variables
@@ -112,21 +116,10 @@ function graphPlot() { //variabe domain?
 //Image Clicking function
 function buttonClick(a,b) {
   imgObjs[indices[a]].timesClicked ++;
-  // console.log(imgObjs[indices[a]].productName + 'clicked.');
   totalClicks ++;
-  // if length thingsSHown = length possible outcomes, reset thingsshown
   reIndex();
-  //if it was already there, reroll R
-  //push r to thingsWeveShown
   imgRefresh();
-  imgObjs[indices[0]].timesShown ++;
-  imgObjs[indices[1]].timesShown ++;
-  imgObjs[indices[2]].timesShown ++;
-  // console.log('Now showing: ' + imgObjs[indices[0]].productName + ' & ' + imgObjs[indices[1]].productName + ' & ' + imgObjs[indices[2]].productName);
-  // [b + 'Count'].textContent = imgObjs[indices[a]].timesClicked;
-  // [b + 'Name'].textContent = imgObjs[indices[a]].productName;
-  if (totalClicks === 4) {
-    console.log('PING');
+  if (totalClicks === 16) {
     revealButtons();
   } else if (totalClicks > 16 && totalClicks % 8 === 0) {
     if (!eightMore) {
@@ -137,9 +130,12 @@ function buttonClick(a,b) {
       moreVotes.setAttribute('style','visibility: hidden');
       newRound.setAttribute('style','visibility: visible');
       graphPlot();
-    }
-    console.log('PING');
+    };
   }
+  //save app state to localStorage
+  localStorage.imgObjs = JSON.stringify(imgObjs);
+  localStorage.totalClicks = totalClicks;
+  localStorage.indices = JSON.stringify(indices);
 }
 
 //Constructing Image Objects
@@ -175,9 +171,6 @@ console.log(imgObjs);
 //Beginning State
 reIndex();
 imgRefresh();
-imgObjs[indices[0]].timesShown ++;
-imgObjs[indices[1]].timesShown ++;
-imgObjs[indices[2]].timesShown ++;
 
 //User Interaction
 imgOne.addEventListener('click', function () {

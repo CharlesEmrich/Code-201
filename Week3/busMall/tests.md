@@ -16,3 +16,9 @@ I'm writing these prior to writing any logic? OK.
 3. Implement simple functions for all buttons initially in order to verify that event listeners are firing correctly.
 4. I can't easily think of fourth or fifth ways to test the two simple-ish features I'm implementing today.
 5. But I swear I'll write them if they come to me.
+
+##Day3 Tests
+1. I'll run the code with localStorage open in order to verify that values are being fed into LS correctly.
+2. I'll identify possible states for the visibility of DOM elements in order to develop a state reload system that accurately represents the user's state.
+3. I'll stringify the imgObjs array into localStorage to save user voting preferences and appearance counts.
+4. I'll troubleshoot the resetState() function to ensure that it correctly zeros out all values in localStorage.
