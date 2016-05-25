@@ -76,11 +76,11 @@ function resetState() {
 //Graph Plotting //Used Chart.js documentation
 function graphPlot() { //variabe domain?
   plot.setAttribute('style','visibility: visible');
-  var clickArray = [];
-  for (var i = 0; i < imgObjs.length; i++) {
-    var datum = (imgObjs[i].timesClicked);
-    clickArray.push(datum);
-  }
+  // var clickArray = [];
+  // for (var i = 0; i < imgObjs.length; i++) {
+  //   var datum = (imgObjs[i].timesClicked);
+  //   clickArray.push(datum);
+  // }
   var percentages = [];
   for (var i = 0; i < imgObjs.length; i++) {
     var datum = 100 * (imgObjs[i].timesClicked / imgObjs[i].timesShown);
@@ -97,11 +97,7 @@ function graphPlot() { //variabe domain?
       datasets: [{
         label: '% of times clicked when shown',
         data: percentages,
-      },
-    {
-      label: 'timesClicked',
-      data: clickArray,
-    }]
+      }]
     },
     options: {
       scales: {
@@ -116,7 +112,7 @@ function graphPlot() { //variabe domain?
 //Image Clicking function
 function buttonClick(a,b) {
   imgObjs[indices[a]].timesClicked ++;
-  console.log(imgObjs[indices[a]].productName + 'clicked.');
+  // console.log(imgObjs[indices[a]].productName + 'clicked.');
   totalClicks ++;
   // if length thingsSHown = length possible outcomes, reset thingsshown
   reIndex();
@@ -126,9 +122,10 @@ function buttonClick(a,b) {
   imgObjs[indices[0]].timesShown ++;
   imgObjs[indices[1]].timesShown ++;
   imgObjs[indices[2]].timesShown ++;
+  // console.log('Now showing: ' + imgObjs[indices[0]].productName + ' & ' + imgObjs[indices[1]].productName + ' & ' + imgObjs[indices[2]].productName);
   // [b + 'Count'].textContent = imgObjs[indices[a]].timesClicked;
   // [b + 'Name'].textContent = imgObjs[indices[a]].productName;
-  if (totalClicks === 16) {
+  if (totalClicks === 4) {
     console.log('PING');
     revealButtons();
   } else if (totalClicks > 16 && totalClicks % 8 === 0) {
@@ -178,6 +175,9 @@ console.log(imgObjs);
 //Beginning State
 reIndex();
 imgRefresh();
+imgObjs[indices[0]].timesShown ++;
+imgObjs[indices[1]].timesShown ++;
+imgObjs[indices[2]].timesShown ++;
 
 //User Interaction
 imgOne.addEventListener('click', function () {
