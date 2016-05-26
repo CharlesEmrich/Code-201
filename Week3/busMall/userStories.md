@@ -15,3 +15,8 @@ As a marketing exec, I would like user data to persist between sessions so that 
 
 As a developer, I want a clear representation of the app's state that will make it easier for me to guide users through the flow of the experience.
 As a coder, I want my code to use as little repetition as possible because an interlinked set of function calls is much easier to read than assorted blocks of code.
+
+##busMall Day3 User Stories
+
+As a focus group user, I want a site that's easy for me to read so that I can focus on providing my input rather than dealing with the interface.
+As a product evaluator, I apparently want a video to take up at least half of the page (and want it to include sound) because in some obscure way I will definitely not find this totally distracting?
