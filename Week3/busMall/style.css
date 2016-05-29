@@ -1,3 +1,30 @@
+/*Colorfish Block*/
+.swiss-coffee {
+  background-color: rgba(213, 210, 147, 1)
+;
+}
+.sherpa-blue {
+  background-color: rgba(15, 76, 68, 1)
+;
+}
+.opal {
+  background-color: rgba(162, 195, 145, 1)
+;
+}
+.oslo-gray {
+  background-color: rgba(134, 148, 29, 1)
+;
+}
+.sea-nymph {
+  background-color: rgba(113, 164, 173, 1)
+;
+}
+
+body {
+  color: rgba(134, 148, 29, 1);
+  font-family: helvetica sans-serif;;
+}
+
 #buttonBar {
   visibility: hidden;
   /*height: 50px;*/
@@ -27,7 +54,7 @@ button {
 img {
   background-position: center;
   display: inline-block;
-  border: 10px blue solid;
+  border: 10px rgba(213, 210, 147, 1) solid;
   height: 200px;
   width: 200px;
   margin: auto 25px;
@@ -52,7 +79,7 @@ img {
 
 #videoZone {
     position: absolute;
-    background-color: blue;
+    /*background-color: rgba(115, 176, 168, 1);*/
     width: 100%;
     height: 85px;
     z-index: -10;
@@ -74,6 +101,7 @@ video {
 h1 {
   text-align: center;
   position: relative;
+  font-family: helvetica sans-serif;;
   -webkit-animation: myDescend 4s;
   animation: myDescend 4s;
 }
@@ -88,6 +116,7 @@ h1 {
 h3 {
   text-align: center;
   position: relative;
+  font-family: helvetica sans-serif;
   -webkit-animation: myDescend 5s;
   animation: myDescend 5s;
 }
@@ -95,6 +124,7 @@ h3 {
 #instructions {
   text-align: center;
   position: relative;
+  font-family: helvetica sans-serif;
   -webkit-animation: myDescend 6s;
   animation: myDescend 6s;
 }
@@ -104,15 +134,17 @@ p {
 }
 
 .count {
-    border: 10px blue solid;
+    border: 10px rgba(213, 210, 147, 1) solid;
     margin: auto 100px;
     border-radius: 20%;
+    font-family: helvetica sans-serif;
     font-weight: bolder;
     font-size: 20px;
 }
 
 .name {
   font-size: 24px;
+  font-family: helvetica sans-serif;
   -webkit-animation: myPulse 5s infinite;
 }
 
